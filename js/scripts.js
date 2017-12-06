@@ -11,8 +11,7 @@ function pigLatin(input) {
       newArray.push(value);
     } else if (value.search(re) !== -1 && value.search(reVowel) === -1) {
       var first = value[0];
-      value = value + first + "ay";
-      value.replace(/\b[.]/, "");
+      value = value.substr(1) + first + "ay";
       newArray.push(value);
     } else {
       newArray.push(value);
