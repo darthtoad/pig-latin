@@ -2,14 +2,32 @@ function pigLatin(input) {
   var array = input.split(" ");
 //  console.log(array);
   var re = /\b[A-Z]/gi;
+  var anyNonLetter = /[^A-Z]/gi;
   var reVowel = /\b[aeiou]/gi;
   var reQu = /\b(qu)/gi;
   var newArray = [];
+  var nonLetter = [];
   array.forEach(function(value){
-    if (value.search(re) !== -1 && value.search(reVowel) !== -1) {
+    //debugger;
+    if (value.length === 1) {
+      newArray.push(value);
+    } /*else if (value.search(anyNonLetter) !== -1) {
+      for (i = 0; i <= value.length; i++) {
+        if (value.charAt(i).search(anyNonLetter) !== -1) {
+          var valueOfI = value[i];
+          console.log(value[i]);
+          nonLetter.push(valueOfI);
+          value.slice(i-1, i);
+        }
+      }
+    }/*
+    if (value.length === 1 && value.search(re)) {
+
+    }*/
+    else if (value.search(reVowel) !== -1) {
       value = value + "way";
       newArray.push(value);
-    } else if (value.search(re) !== -1 && value.search(reVowel) === -1) {
+    } else if (value.search(reVowel) === -1) {
       if (value.search(reQu) !== -1) {
         value = value.substr(2) + "quay";
         newArray.push(value);
@@ -38,7 +56,8 @@ function pigLatin(input) {
       newArray.push(value);
     }// console.log(value);
   })
-  var final = newArray.join(" ");
+  console.log(nonLetter);
+  var final = newArray.join(" ") + nonLetter.join("");
   return final;
 }
 
