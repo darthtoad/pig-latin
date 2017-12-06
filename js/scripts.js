@@ -1,6 +1,6 @@
 function pigLatin(input) {
   var array = input.split(" ");
-  console.log(array);
+//  console.log(array);
   var re = /\b[A-Z]/gi;
   var reVowel = /\b[aeiou]/gi;
   var reQu = /\b(qu)/gi;
@@ -13,6 +13,22 @@ function pigLatin(input) {
       if (value.search(reQu) !== -1) {
         value = value.substr(2) + "quay";
         newArray.push(value);
+      } else if (value.substr(1).search(reVowel) === -1) {
+        var consonants = [];
+        for (var i = 0; i <= value.length; i++) {
+          console.log(value[i].search(reVowel));
+          if (value[i].search(reVowel) === -1) {
+            consonants.push(value[i]);//all values from 0 to i
+            //console.log(consonants)
+          } else {
+            var endConsonants = consonants.join("");
+            //console.log(endConsonants);
+            value = value.substr(i) + endConsonants + "ay";
+            i = value.length + 1;
+            newArray.push(value);
+          }
+        }
+      //  newArray.push();
       } else {
         var first = value[0];
         value = value.substr(1) + first + "ay";
@@ -20,7 +36,7 @@ function pigLatin(input) {
       }
     } else {
       newArray.push(value);
-    } console.log(value);
+    }// console.log(value);
   })
   var final = newArray.join(" ");
   return final;
