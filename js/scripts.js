@@ -9,7 +9,7 @@ function pigLatin(input) {
   var nonLetter = [];
   array.forEach(function(value){
     //debugger;
-    if (value.length === 1) {
+    if (value.length === 1 && value.search(anyNonLetter) !== -1) {
       newArray.push(value);
     } /*else if (value.search(anyNonLetter) !== -1) {
       for (i = 0; i <= value.length; i++) {
