@@ -9,52 +9,54 @@ function pigLatin(input) {
   var nonLetter = [];
   array.forEach(function(value){
     //debugger;
+    console.log(value.replace(anyNonLetter, ''));
     if (value.length === 1 && value.search(anyNonLetter) !== -1) {
       newArray.push(value);
-    } /*else if (value.search(anyNonLetter) !== -1) {
-      for (i = 0; i <= value.length; i++) {
-        if (value.charAt(i).search(anyNonLetter) !== -1) {
-          var valueOfI = value[i];
-          console.log(value[i]);
-          nonLetter.push(valueOfI);
-          value.slice(i-1, i);
-        }
-      }
-    }/*
-    if (value.length === 1 && value.search(re)) {
-
-    }*/
-    else if (value.search(reVowel) !== -1) {
-      value = value + "way";
-      newArray.push(value);
-    } else if (value.search(reVowel) === -1) {
-      if (value.search(reQu) !== -1) {
-        value = value.substr(2) + "quay";
-        newArray.push(value);
-      } else if (value.substr(1).search(reVowel) === -1) {
-        var consonants = [];
-        for (var i = 0; i <= value.length; i++) {
-          console.log(value[i].search(reVowel));
-          if (value[i].search(reVowel) === -1) {
-            consonants.push(value[i]);//all values from 0 to i
-            //console.log(consonants)
-          } else {
-            var endConsonants = consonants.join("");
-            //console.log(endConsonants);
-            value = value.substr(i) + endConsonants + "ay";
-            i = value.length + 1;
-            newArray.push(value);
-          }
-        }
-      //  newArray.push();
-      } else {
-        var first = value[0];
-        value = value.substr(1) + first + "ay";
-        newArray.push(value);
-      }
     } else {
-      newArray.push(value);
-    }// console.log(value);
+      value = value.replace(anyNonLetter, '');
+      if (value.search(reVowel) !== -1) {
+        value = value + "way";
+        newArray.push(value);
+      } else if (value.search(reVowel) === -1) {
+        if (value.search(reQu) !== -1) {
+          value = value.substr(2) + "quay";
+          newArray.push(value);
+        } else if (value.substr(1).search(reVowel) === -1) {
+          var consonants = [];
+          for (var i = 0; i <= value.length; i++) {
+            console.log(value[i].search(reVowel));
+            if (value[i].search(reVowel) === -1) {
+              consonants.push(value[i]);//all values from 0 to i
+              //console.log(consonants)
+            } else {
+              var endConsonants = consonants.join("");
+              //console.log(endConsonants);
+              value = value.substr(i) + endConsonants + "ay";
+              i = value.length + 1;
+              newArray.push(value);
+            }
+          }
+        //  newArray.push();
+        } else {
+          var first = value[0];
+          value = value.substr(1) + first + "ay";
+          newArray.push(value);
+        }
+      } else {
+        newArray.push(value);
+      }
+    } //else if (value.search(anyNonLetter) !== -1) {
+    //}
+      /*
+      var valueArray = value.split("");
+      valueArray.forEach(function(valueInArray) {
+        if (value.search(anyNonLetter) !== -1) {
+          valueArray.splice(valueInArray);
+        }
+        value = valueArray.join("");
+      }
+    )
+  }*/ // console.log(value);
   })
   console.log(nonLetter);
   var final = newArray.join(" ") + nonLetter.join("");
